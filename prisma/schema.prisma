@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  userId         String
+  password       String?
+  avatar         String?
+  description    String?
+  job            String?
+  link_facebook  String?
+  link_twitter   String?
+  link_instagram String?
+  link_youtube   String?
+  link_github    String?
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  posts     Post[]     @relation("UserPosts")
+  bookmarks Bookmark[] @relation("UserBookmark")
+  series    Series[]   @relation("UserSeries")
+}
+
+model Post {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  thumbnail    String?
+  content      String?
+  description  String?
+  published    Boolean        @default(false)
+  authorId     String         @db.ObjectId
+  author       User?          @relation("UserPosts", fields: [authorId], references: [id])
+  bookmarks    Bookmark[]     @relation("PostBookmark")
+  postOfSeries PostOfSeries[] @relation("PostSeries")
+  category     String?
+  origin_post  String?
+  total_views  Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+}
+
+model Bookmark {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  authorId  String   @db.ObjectId
+  author    User     @relation("UserBookmark", fields: [authorId], references: [id])
+  postId    String   @db.ObjectId
+  post      Post     @relation("PostBookmark", fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Series {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  thumbnail     String?
+  content       String?
+  authorId      String         @db.ObjectId
+  author        User?          @relation("UserSeries", fields: [authorId], references: [id])
+  postsOfSeries PostOfSeries[] @relation("SeriesSeries")
+  category      String?
+  total_views   Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model PostOfSeries {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  seriesId  String   @db.ObjectId
+  series    Series   @relation("SeriesSeries", fields: [seriesId], references: [id])
+  postId    String   @db.ObjectId
+  post      Post     @relation("PostSeries", fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

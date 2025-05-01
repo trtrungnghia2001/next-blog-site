@@ -1,0 +1,85 @@
+#react-quill-new {
+    position: relative;
+    .ql-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      z-index: 10;
+    }
+    .ql-editor {
+      font-size: inherit !important;
+      background-color: inherit !important;
+      color: inherit !important;
+      min-height: 300px;
+      max-height: 600px;
+  
+      * {
+        :not(.ql-code-block-container) {
+          background-color: inherit !important;
+        }
+      }
+  
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+        margin: 1rem 0;
+      }
+      /* h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        h3 {
+          font-size: 1.17em;
+        }
+        h4 {
+          font-size: 0.875rem;
+        }
+        h5 {
+          font-size: 0.83em;
+        }
+        h6 {
+          font-size: 0.67em;
+        } */
+      img {
+        margin: 1rem 0 !important;
+      }
+      p {
+        margin-bottom: 1rem !important;
+      }
+      ul,
+      ol {
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+      blockquote{
+        margin: 1rem 0;
+      }
+      .ql-code-block-container {
+        background-color: #393938;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+      }
+    }
+    .ql-view {
+      max-height: unset !important;
+      min-height: unset !important;
+      padding: unset !important;
+      color: inherit !important;
+    }
+    table, th, td{
+      border: 1px solid var(--border-color)
+    }
+    th,td{
+      padding: .75rem;
+    }
+  }
