@@ -25,6 +25,7 @@ This blog site allows users to create, read, update, and delete blog posts. It's
 ## Technologies Used
 
 * Next.js
+* Clerk
 * Mongodb
 * Prisma
 * Tailwind
