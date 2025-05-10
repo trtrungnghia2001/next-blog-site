@@ -16,11 +16,10 @@ This blog site allows users to create, read, update, and delete blog posts. It's
 
 ## Features
 
-* Server-side rendering for improved SEO and performance
-* Static site generation for fast page loads
 * Blog post creation, editing, and deletion
+* Save blog to watchlist
+* The dashboard has detailed statistics on views and engagement for each post.
 * User authentication and authorization
-* Responsive design for mobile and desktop
 
 ## Technologies Used
 
