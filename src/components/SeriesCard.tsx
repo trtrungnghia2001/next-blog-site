@@ -28,7 +28,7 @@ const SeriesCard = ({ data }: { data: SeriesType }) => {
           </Link>
         </div>
         <h5>
-          <Link href={`/blog/` + data.id} className="line-clamp-2 h-12">
+          <Link href={`/series/` + data.id} className="line-clamp-2 h-12">
             {data.title}
           </Link>
         </h5>
